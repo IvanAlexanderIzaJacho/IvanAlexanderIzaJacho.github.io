@@ -6,34 +6,29 @@
     <!-- CSS de Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <style>
-
     *{
        margin: 0;
        padding: 0;
        box-sizing: border-box;
     }
-
     header{
       background-color: #F9F8FC;
     }
-
     #logo{
       margin: auto;
       height: 250px;
       width: 320px;
       text-align: center;
     }
-
     #logo h1{
        font-family: 'Pacifico', cursive;
        font-size: 58px;
-     }
-
+    }
    nav{
      height: 60px;
-     background-color:#17181C;
+     background-color:#dbdde1;
      text-align: center;
-   }
+    }
 
    nav ul{
       list-style: none;
@@ -57,11 +52,16 @@
    nav ul li a:hover{
      background-color: #929fb3;
    }
+   .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
 
  </style>
   </head>
   <body>
-    <div class="logo">
+    <div id="logo">
         <img src="img/logo.png" alt="Descripción de la imagen" >
 
     </div>
@@ -72,7 +72,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="nav navbar-nav navbar-center">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
                 </li>
