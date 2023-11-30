@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    *{
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+    }
+    header{
+      background-color: #F9F8FC;
+    }
+    #logo{
+      margin: auto;
+      height: 250px;
+      width: 320px;
+      text-align: center;
+    }
+    #logo h1{
+       font-family: 'Pacifico', cursive;
+       font-size: 58px;
+    }
+   nav{
+     height: 60px;
+     background-color:#dbdde1;
+     text-align: center;
+    }
+
+   nav ul{
+      list-style: none;
+      display: inline-block;
+      padding:18px;
+   }
+
+   nav ul li{
+       float: left;
+       margin-top: 20px;
+   }
+
+   nav ul li a {
+       color: white;
+       font-weight: bold;
+       text-decoration: none;
+       font-size: 20px;
+       padding: 18px;
+   }
+
+   nav ul li a:hover{
+     background-color: #929fb3;
+   }
+   .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+ </style>
+  </head>
+  <body>
+    <div id="logo">
+        <img src="img/logo.png" alt="Descripción de la imagen" >
+
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-light ">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav navbar-center">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nosotros.html">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="surfboards.html">CS Surfboards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="comunidad.html">Comunidad</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contactos</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+    <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/f1.jpg" class="d-block w-100" alt="Imagen 1">
+        </div>
+        <div class="carousel-item">
+            <img src="img/f2.jpg" class="d-block w-100" alt="Imagen 2">
+        </div>
+        <div class="carousel-item">
+            <img src="img/f3.jpg" class="d-block w-100" alt="Imagen 3">
+        </div>
+        <div class="carousel-item">
+            <img src="img/f4.jpg" class="d-block w-100" alt="Imagen 3">
+        </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+    </a>
+</div>
+
+<!-- AQUI CODIFICAN LA PARTE QUE LES TOCO A CADA UNO-->
+ 
+
+
+    
+    <style>
+        .texto-centrado {
+            text-align: center;
+        }
+       .boton{
+        background-color: #C70039; /* Color de fondo verde */
+        color: white; /* Color del texto blanco */
+        padding: 10px 20px; /* Espaciado interno */
+        text-align: center; /* Alineación del texto al centro */
+        text-decoration: none; /* Quitar subrayado del texto */
+        display: inline-block; /* Hacer que el botón sea un bloque en línea */
+        font-size: 16px; /* Tamaño de la fuente */
+       }
+        .texto-grande {
+            font-size: 20px; /* Ajusta el tamaño del texto según tus necesidades */
+            line-height: 1.5; /* Ajusta la altura de línea según tus necesidades */
+        }
+    </style>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+
+<div class="texto-centrado">
+        <p class="texto-grande">En CS Surfboards fabricamos tablas personalizadas tanto en shape como diseño artístico que van de acorde a tu nivel de habilidad para ayudarte a sacar lo mejor de tu surfing en todo tipo de condiciones o estilos.</p>
+        <h2>Te asesoramos para hacer realidad tu próxima tabla</h2>
+        <button class="boton">Escribenos Aqui</button>
+    </div>
+
+
+
+
+
+
+
+  
+
+    <!-- jQuery y JS de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>
