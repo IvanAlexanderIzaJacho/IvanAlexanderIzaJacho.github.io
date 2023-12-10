@@ -6,6 +6,56 @@
     <!-- CSS de Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+  
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+  
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+    }
+  
+    input[type=text],
+    input[type=number],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box; /* Para que el padding no afecte el ancho total */
+    }
+  
+    input[type=submit] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #5cb85c;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  
+    input[type=submit]:hover {
+      background-color: #4cae4c;
+    }
+  </style> 
+  <style>
     *{
        margin: 0;
        padding: 0;
@@ -124,14 +174,20 @@
 </div>
 <div>
     <h3>Vive tu vida Surfboards</h3>
-    <form action="" id="crud-form">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre">
-        <br>        
-        <label for="edad">Edad</label>
-        <input type="text" id="edad">
-        <br>
-        <button type="button" onclick="crearRegistro">Crear</button>
+    <form action="/ruta-para-procesar-formulario" method="post">
+        <label for="nombreProducto">Nombre del Producto:</label>
+        <input type="text" id="nombreProducto" name="nombreProducto" required>
+      
+        <label for="descripcionProducto">Descripción:</label>
+        <textarea id="descripcionProducto" name="descripcionProducto" rows="4" required></textarea>
+      
+        <label for="precioProducto">Precio:</label>
+        <input type="number" id="precioProducto" name="precioProducto" step="0.01" required>
+      
+        <label for="cantidadProducto">Cantidad en Stock:</label>
+        <input type="number" id="cantidadProducto" name="cantidadProducto" required>
+      
+        <input type="submit" value="Guardar Producto">
     </form>
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -158,7 +214,7 @@
             const edad = document.getElementById("edad").value;
             console.log(nombre, edad);
             push(
-                ref(database, 'septimo'),
+                ref(database, 'Alexander Iza'),
                 {
                     name: nombre,
                     age: edad 
