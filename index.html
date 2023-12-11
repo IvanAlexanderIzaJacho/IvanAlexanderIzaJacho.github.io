@@ -249,14 +249,14 @@
           Cantidad: Cantidad 
         }).then(() => {
         // Mensaje de éxito y limpieza de los campos
-        mostrarMensaje('Producto registrado con éxito', 'exito');
+        alert('Producto registrado con éxito', 'exito');
         document.getElementById("nombreProducto").value = '';
         document.getElementById("descripcionProducto").value = '';
         document.getElementById("precioProducto").value = '';
         document.getElementById("cantidadProducto").value = '';
       }).catch((error) => {
         // Mensaje de error
-        mostrarMensaje('Error al registrar el producto: ' + error.message, 'error');
+        alert('Error al registrar el producto: ' + error.message, 'error');
       });
     };
       
