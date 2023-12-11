@@ -323,12 +323,16 @@
               Precio: nuevoPrecio,
               Cantidad: nuevaCantidad
             }).then(() => {
-              console.log('Datos actualizados con éxito');
+              alert('Datos actualizados con éxito');
+              document.getElementById("nombreProducto").value = '';
+              document.getElementById("descripcionProducto").value = '';
+              document.getElementById("precioProducto").value = '';
+              document.getElementById("cantidadProducto").value = '';
             }).catch((error) => {
-              console.error('Error al actualizar datos:', error);
+              alert('Error al actualizar datos:', error);
             });
           } else {
-            console.log('Producto no encontrado para actualizar');
+            alert('Producto no encontrado para actualizar');
           }
         }
       }, {
