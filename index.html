@@ -212,13 +212,11 @@
 
         <input type="button" value="Guardar Producto" class="boton boton-actualizar" onclick="crearRegistro()">      
         <input type="button" value="Actualizar" class="boton boton-actualizar" onclick="actualizarRegistro()">
-        <input type="button" value="Consultar" class="boton boton-consultar" onclick="consultarRegistrosPorNombre()">
+        <input type="button" value="Consultar" class="boton boton-consultar" onclick="consultarRegistros()">
         <input type="button" value="Eliminar" class="boton boton-eliminar" onclick="eliminarRegistro()">
     </form>
-
     <script type="module">
       // Import the functions you need from the SDKs you need
-      
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
       import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
       // TODO: Add SDKs for Firebase products that you want to use
@@ -237,21 +235,20 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const database= getDatabase(app);
-      function crearRegistro() {
+      window.crearRegistro = function () {
       const nombre = document.getElementById("nombreProducto").value;
-      const descripcion = document.getElementById("descripcionProducto").value;
-      const precio = document.getElementById("precioProducto").value;
-      const cantidad = document.getElementById("cantidadProducto").value;
-
-      const nuevoRegistroRef = push(ref(database, 'Alexander Iza'));
-        nuevoRegistroRef.set({
+      const Descripción = document.getElementById("descripcionProducto").value;
+      const Precio = document.getElementById("precioProducto").value;
+      const Cantidad = document.getElementById("cantidadProducto").value;
+      push( 
+        ref(database, '/Alexander Iza'),
+        {
           Nombre: nombre,
-          Descripción: descripcion,
-          Precio: precio,
-          Cantidad: cantidad
+          Descripción: Descripción,
+          Precio: Precio,
+          Cantidad: Cantidad 
         });
       }
-      
 
       //Consultar Datos
       window.buscarProductoPorNombre = function () {
