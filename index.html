@@ -257,7 +257,7 @@
       consultarRegistrosPorNombre(nombreProductoBuscado);
       };
       window.consultarRegistrosPorNombre = function (nombreProductoBuscado) {
-      const registrosRef = ref(database, 'Alexander Iza');
+      const registrosRef = ref(database, 'Alexander Iza/');
       onValue(registrosRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
