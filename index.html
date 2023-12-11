@@ -281,7 +281,7 @@
             //Actualizar datos
             window.actualizarRegistro = function () {
             // Obtén los valores del formulario
-            const nombreProducto = document.getElementById('nombreProducto').value;
+            
             const descripcionProducto = document.getElementById('descripcionProducto').value;
             const precioProducto = document.getElementById('precioProducto').value;
             const cantidadProducto = document.getElementById('cantidadProducto').value;
@@ -291,7 +291,7 @@
 
             // Aquí necesitas tener una forma de identificar el registro a actualizar, por ejemplo, el ID del producto
             // Supongamos que tienes un campo de entrada para el ID del producto en tu formulario
-            const productoId = document.getElementById('productoId').value;
+            const productoId = document.getElementById('nombreProducto').value;
             const productoRef = ref(database, `Alexander Iza/${productoId}`);
 
             // Crea el objeto con los nuevos datos del producto
