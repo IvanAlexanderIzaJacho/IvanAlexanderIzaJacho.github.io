@@ -277,6 +277,53 @@
              onlyOnce: true 
             });
     }
+
+            //Actualizar datos
+            window.actualizarRegistro = function () {
+            // Obtén los valores del formulario
+            const nombreProducto = document.getElementById('nombreProducto').value;
+            const descripcionProducto = document.getElementById('descripcionProducto').value;
+            const precioProducto = document.getElementById('precioProducto').value;
+            const cantidadProducto = document.getElementById('cantidadProducto').value;
+
+            // Referencia a la base de datos y al nodo específico
+            const registrosRef = ref(database, 'Alexander Iza');
+
+            // Aquí necesitas tener una forma de identificar el registro a actualizar, por ejemplo, el ID del producto
+            // Supongamos que tienes un campo de entrada para el ID del producto en tu formulario
+            const productoId = document.getElementById('productoId').value;
+            const productoRef = ref(database, `Alexander Iza/${productoId}`);
+
+            // Crea el objeto con los nuevos datos del producto
+            const productoActualizado = {
+                Nombre: nombreProducto,
+                Descripción: descripcionProducto,
+                Precio: precioProducto,
+                Cantidad: cantidadProducto
+            };
+
+            // Actualiza el registro en la base de datos
+            set(productoRef, productoActualizado)
+            .then(() => {
+                console.log('Registro actualizado con éxito');
+                // Aquí puedes agregar código para manejar la actualización exitosa, como mostrar un mensaje al usuario
+            })
+            .catch((error) => {
+                console.error('Error al actualizar el registro:', error);
+                // Aquí puedes agregar código para manejar errores, como mostrar un mensaje de error al usuario
+            });
+        }
+        //eliminar Registro
+        remove(registroRef)
+          .then(() => {
+              console.log("Registro eliminado con éxito!");
+              // Aquí puedes agregar código para manejar lo que sucede después de la eliminación exitosa
+              // Por ejemplo, limpiar el formulario o actualizar la interfaz de usuario
+          })
+          .catch((error) => {
+              console.error("Error al eliminar el registro: ", error);
+              // Manejar el error de eliminación aquí
+          });
     </script>
 </div>
 
