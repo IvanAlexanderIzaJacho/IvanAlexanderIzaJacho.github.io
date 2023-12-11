@@ -272,12 +272,10 @@
             document.getElementById('descripcionProducto').value = productoEncontrado.Descripción || '';
             document.getElementById('precioProducto').value = productoEncontrado.Precio || '';
             document.getElementById('cantidadProducto').value = productoEncontrado.Cantidad || '';
-            mensajeProducto.textContent = 'Producto encontrado: ' + productoEncontrado.Nombre;
-            mensajeProducto.className = 'mensaje-producto visible exito';
+            alert('Producto encontrado: ' + productoEncontrado.Nombre);
           } else {
             // Manejar el caso en que el producto no se encuentra
-            mensajeProducto.textContent = 'No hay productos registrados';
-            mensajeProducto.className = 'mensaje-producto visible error';
+            console.log('Producto no encontrado');
           }
         }
       }, {
