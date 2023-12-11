@@ -240,15 +240,21 @@
       const Descripción = document.getElementById("descripcionProducto").value;
       const Precio = document.getElementById("precioProducto").value;
       const Cantidad = document.getElementById("cantidadProducto").value;
-      push( 
-        ref(database, 'Alexander Iza'),
+      
+      // Genera una clave personalizada para el nuevo registro, por ejemplo, usando el nombre del producto
+      const clavePersonalizada = nombre.replace(/\s+/g, '_').toLowerCase(); // Esto reemplaza espacios con guiones bajos y convierte a minúsculas
+      
+      set(
+        ref(database, 'Alexander Iza/' + clavePersonalizada),
         {
           Nombre: nombre,
           Descripción: Descripción,
           Precio: Precio,
-          Cantidad: Cantidad 
-        });
-      }
+          Cantidad: Cantidad
+        }
+      );
+    }
+      
 
       //Consultar Datos
       window.buscarProductoPorNombre = function () {
