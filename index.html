@@ -243,14 +243,14 @@
       const precio = document.getElementById("precioProducto").value;
       const cantidad = document.getElementById("cantidadProducto").value;
 
-      const nuevoRegistroRef = firebase.database().ref('Alexander Iza').push();
-      nuevoRegistroRef.set({
-        Nombre: nombre,
-        Descripción: descripcion,
-        Precio: precio,
-        Cantidad: cantidad
-      });
-    }
+      const nuevoRegistroRef = push(ref(database, 'Alexander Iza'));
+        nuevoRegistroRef.set({
+          Nombre: nombre,
+          Descripción: descripcion,
+          Precio: precio,
+          Cantidad: cantidad
+        });
+      }
       
 
       //Consultar Datos
