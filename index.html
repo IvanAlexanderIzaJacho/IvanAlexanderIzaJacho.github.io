@@ -240,8 +240,9 @@
       const Descripción = document.getElementById("descripcionProducto").value;
       const Precio = document.getElementById("precioProducto").value;
       const Cantidad = document.getElementById("cantidadProducto").value;
+      console.log(nombre, Descripción, Precio, Cantidad);
       push( 
-        ref(database, '/Alexander Iza/'),
+        ref(database, 'Alexander Iza'),
         {
           Nombre: nombre,
           Descripción: Descripción,
