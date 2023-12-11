@@ -281,9 +281,9 @@
             //Actualizar datos
             window.actualizarRegistro = function () {
             // Obtén los valores del formulario
-            const descripcionProducto = document.getElementById('descripcionProducto').value;
-            const precioProducto = document.getElementById('precioProducto').value;
-            const cantidadProducto = document.getElementById('cantidadProducto').value;
+            const descripcion = document.getElementById('descripcionProducto').value;
+            const precio = document.getElementById('precioProducto').value;
+            const cantidad = document.getElementById('cantidadProducto').value;
 
             // Referencia a la base de datos y al nodo específico
             const registrosRef = ref(database, 'Alexander Iza');
@@ -295,9 +295,9 @@
 
             // Crea el objeto con los nuevos datos del producto
             const productoActualizado = {
-                Descripción: descripcionProducto,
-                Precio: precioProducto,
-                Cantidad: cantidadProducto
+                Descripción: descripcion,
+                Precio: precio,
+                Cantidad: cantidad
             };
 
             // Actualiza el registro en la base de datos
