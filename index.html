@@ -212,7 +212,7 @@
 
         <input type="button" value="Guardar Producto" class="boton boton-actualizar" onclick="crearRegistro()">      
         <input type="button" value="Actualizar" class="boton boton-actualizar">
-        <input type="button" value="Consultar" class="boton boton-consultar" onclick="consultarRegistrosConCondicion()">
+        <input type="button" value="Consultar" class="boton boton-consultar" onclick="consultarRegistros()">
         <input type="button" value="Eliminar" class="boton boton-eliminar">
     </form>
     <script type="module">
@@ -255,32 +255,39 @@
         }
 
         //Consultar Datos
-        window.consultarRegistrosConCondicion = function () {
-        // Obtén el valor ingresado por el usuario
+        window.consultarRegistros = function () {
+        // Obtén el valor ingresado por el usuario para la búsqueda
         const nombreBuscado = document.getElementById('nombreProducto').value;
 
-        // Crea una referencia al nodo donde están almacenados los productos
-        const productosRef = ref(database, 'Alexander Iza');
+        // Referencia a la base de datos y al nodo específico
+        const registrosRef = ref(database, 'Alexander Iza');
 
-        // Crea la consulta con la condición de que el precio sea igual al ingresado por el usuario
-        const productosQuery = query(productosRef, orderByChild('Nombre'), equalTo(nombreBuscado));
+        // Crea una consulta con la condición de que el campo 'Nombre' sea igual al nombre buscado
+        const consulta = query(registrosRef, orderByChild('Nombre'), equalTo(nombreBuscado));
 
-        // Escucha por los datos que coincidan con la consulta
-        onValue(productosQuery, (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                const data = childSnapshot.val();
-                // Aquí puedes actualizar tu formulario o hacer lo que necesites con los datos
-                console.log(data);
-                // Por ejemplo, si quieres imprimir el nombre del producto en el campo 'nombreProducto':
-                document.getElementById("descripcionProducto").value = data.Descripción;
-                document.getElementById("precioProducto").value = data.Precio;
-                document.getElementById("cantidadProducto").value = data.Cantidad;
-               
-            });
+        // Ejecuta la consulta
+        onValue(consulta, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                // Si hay datos, recorre los resultados y actualiza el formulario con el primer producto encontrado
+                for (let key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        const producto = data[key];
+                        document.getElementById('nombreProducto').value = producto.Nombre || '';
+                        document.getElementById('descripcionProducto').value = producto.Descripción || '';
+                        document.getElementById('precioProducto').value = producto.Precio || '';
+                        document.getElementById('cantidadProducto').value = producto.Cantidad || '';
+                        break; // Sal del bucle después de actualizar con el primer producto encontrado
+                    }
+                }
+            } else {
+                // Si no hay datos, puedes manejarlo como prefieras, por ejemplo, mostrando un mensaje
+                console.log('No se encontraron productos con ese nombre.');
+            }
         }, {
-            onlyOnce: true // Esto es para que la consulta se ejecute solo una vez
+            onlyOnce: true
         });
-    };
+    }
         
     </script>
 </div>
