@@ -251,32 +251,37 @@
       }
 
       //Consultar Datos
+      window.buscarProductoPorNombre = function () {
+      const nombreProductoBuscado = document.getElementById('nombreProducto').value;
+      consultarRegistrosPorNombre(nombreProductoBuscado);
+      };
       window.consultarRegistrosPorNombre = function (nombreProductoBuscado) {
       const registrosRef = ref(database, 'Alexander Iza');
       onValue(registrosRef, (snapshot) => {
         const data = snapshot.val();
-          if (data) {
+        if (data) {
             let productoEncontrado = null;
             for (const key in data) {
-              if (data[key].Nombre === nombreProductoBuscado) {
-                productoEncontrado = data[key];
-                break;
-              }
+                if (data[key].Nombre === nombreProductoBuscado) {
+                    productoEncontrado = data[key];
+                    break;
+                }
             }
             if (productoEncontrado) {
-              document.getElementById('nombreProducto').value = productoEncontrado.Nombre || '';
-              document.getElementById('descripcionProducto').value = productoEncontrado.Descripción || '';
-              document.getElementById('precioProducto').value = productoEncontrado.Precio || '';
-              document.getElementById('cantidadProducto').value = productoEncontrado.Cantidad || '';
+                document.getElementById('nombreProducto').value = productoEncontrado.Nombre || '';
+                document.getElementById('descripcionProducto').value = productoEncontrado.Descripción || '';
+                document.getElementById('precioProducto').value = productoEncontrado.Precio || '';
+                document.getElementById('cantidadProducto').value = productoEncontrado.Cantidad || '';
             } else {
-              console.log('Producto no encontrado');
+                // Manejar el caso en que el producto no se encuentra
+                console.log('Producto no encontrado');
             }
-          }
-      }, {
-          onlyOnce: true
-      });
-  }
-          
+        }
+    }, {
+        onlyOnce: true
+    });
+};
+        
 
             //Actualizar datos
             window.actualizarRegistro = function () {
