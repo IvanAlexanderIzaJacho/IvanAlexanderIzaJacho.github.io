@@ -211,7 +211,7 @@
         <input type="number" id="cantidadProducto" required>
 
         <input type="button" value="Guardar Producto" class="boton boton-actualizar" onclick="crearRegistro()">      
-        <input type="button" value="Actualizar" class="boton boton-actualizar" onclick="guardarCambios()">
+        <input type="button" value="Actualizar" class="boton boton-actualizar" onclick="actualizarDatosProducto()">
         <input type="button" value="Consultar" class="boton boton-consultar" onclick="buscarProductoPorNombre()">
         <input type="button" value="Eliminar" class="boton boton-eliminar" onclick="eliminarRegistro()">
     </form>
@@ -283,43 +283,55 @@
         });
       };
       //Actualizar datos
-      // Asegúrate de que este script se ejecute después de que el DOM esté completamente cargado
-      window.guardarCambios = function () {
-        // Obtén los valores de los inputs
+      // Función para buscar el ID del producto basado en el nombre
+      window.buscarIDPorNombre = function (nombreProducto, callback) {
+        const registrosRef = ref(database, 'Alexander Iza/');
+        onValue(registrosRef, (snapshot) => {
+          const data = snapshot.val();
+          let productoID = null;
+          for (const key in data) {
+            if (data[key].Nombre === nombreProducto) {
+              productoID = key;
+              break;
+            }
+          }
+          callback(productoID);
+        }, {
+          onlyOnce: true
+        });
+      };
+
+      // Función para actualizar los datos del producto
+      window.actualizarDatosProducto = function () {
         const nombreProducto = document.getElementById('nombreProducto').value;
         const descripcionProducto = document.getElementById('descripcionProducto').value;
         const precioProducto = document.getElementById('precioProducto').value;
         const cantidadProducto = document.getElementById('cantidadProducto').value;
 
-        // Suponiendo que tienes un ID de producto que quieres actualizar
-        const idProducto = 'nombreProducto';
+        // Busca el ID del producto basado en el nombre
+        buscarIDPorNombre(nombreProducto, (productoID) => {
+          if (productoID) {
+            const productoRef = ref(database, 'Alexander Iza/' + productoID);
+            const datosActualizados = {
+              Descripción: descripcionProducto,
+              Precio: precioProducto,
+              Cantidad: cantidadProducto
+            };
 
-        // Crea un objeto con los datos actualizados
-        const datosActualizados = {
-          Nombre: nombreProducto,
-          Descripción: descripcionProducto,
-          Precio: precioProducto,
-          Cantidad: cantidadProducto
-        };
-
-        // Llama a la función de actualización con el ID y los datos actualizados
-        actualizarProducto(idProducto, datosActualizados);
+            // Actualiza los datos en Firebase
+            update(productoRef, datosActualizados)
+              .then(() => {
+                console.log('Datos actualizados con éxito');
+              })
+              .catch((error) => {
+                console.error('Error al actualizar datos:', error);
+              });
+          } else {
+            console.log('Producto no encontrado');
+          }
+        });
       };
-
-      // Función para actualizar un registro en Firebase
-      function actualizarProducto(idProducto, datosActualizados) {
-        const productoRef = ref(database, 'Alexander Iza/' + idProducto);
-
-        // Actualiza los datos en la referencia del producto
-        update(productoRef, datosActualizados)
-          .then(() => {
-            console.log('Datos actualizados con éxito');
-            // Aquí puedes agregar cualquier código adicional que desees ejecutar después de la actualización
-          })
-          .catch((error) => {
-            console.error('Error al actualizar los datos:', error);
-          });
-      }
+      
       
         //eliminar Registro
         window.eliminarRegistro = function () {
