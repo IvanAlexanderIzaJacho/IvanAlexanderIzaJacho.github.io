@@ -213,7 +213,7 @@
         <input type="button" value="Guardar Producto" class="boton boton-actualizar" onclick="crearRegistro()">      
         <input type="button" value="Actualizar" class="boton boton-actualizar" onclick="actualizarDatosProducto()">
         <input type="button" value="Consultar" class="boton boton-consultar" onclick="buscarProductoPorNombre()">
-        <input type="button" value="Eliminar" class="boton boton-eliminar" onclick="eliminarRegistro()">
+        <input type="button" value="Eliminar" class="boton boton-eliminar" onclick="eliminarProductoPorNombre(document.getElementById('nombreProducto').value)">
     </form>
     <script type="module">
       // Import the functions you need from the SDKs you need
@@ -323,32 +323,39 @@
       }, {
         onlyOnce: true
       });
-    };
-     
-      
-      
-      
-        //eliminar Registro
-        window.eliminarRegistro = function () {
-            // Obtén el valor del identificador único del registro a eliminar
-            // Supongamos que el identificador único es el nombre del producto
-            const nombreProducto = document.getElementById('nombreProducto').value;
+    };     
+  //eliminar Registro
+  window.eliminarProductoPorNombre = function (nombreProducto) {
+  const db = getDatabase();
+  const registrosRef = ref(db, 'Alexander Iza/');
+  onValue(registrosRef, (snapshot) => {
+    const data = snapshot.val();
+    let productoKey = null;
 
-            // Referencia a la base de datos y al nodo específico que deseas eliminar
-            const registroRef = ref(database, 'Alexander Iza/${nombreProducto');
+    for (const key in data) {
+      if (data[key].Nombre === nombreProducto) {
+        productoKey = key;
+        break;
+      }
+    }
 
-            // Elimina el registro
-            remove(registroRef)
-            .then(() => {
-                console.log("Registro eliminado con éxito!");
-                // Aquí puedes agregar código para manejar lo que sucede después de la eliminación exitosa
-                // Por ejemplo, limpiar el formulario o actualizar la interfaz de usuario
-            })
-            .catch((error) => {
-                console.error("Error al eliminar el registro: ", error);
-                // Manejar el error de eliminación aquí
-            });
-        }
+    if (productoKey) {
+      const productoRef = ref(db, `Alexander Iza/${productoKey}`);
+      remove(productoRef)
+        .then(() => {
+          console.log('Producto eliminado con éxito');
+        })
+        .catch((error) => {
+          console.error('Error al eliminar el producto:', error);
+        });
+    } else {
+      console.log('Producto no encontrado para eliminar');
+    }
+  }, {
+    onlyOnce: true
+  });
+};
+        
         
     </script>
 </div>
