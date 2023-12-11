@@ -283,35 +283,48 @@
         });
       };
       //Actualizar datos
-      window.actualizarRegistro = function () {
-      // Obtén los valores del formulario
-      const descripcionProducto = document.getElementById('descripcionProducto').value;
-      const precioProducto = document.getElementById('precioProducto').value;
-      const cantidadProducto = document.getElementById('cantidadProducto').value;
-      // Referencia a la base de datos y al nodo específico
-      const registrosRef = ref(database, 'Alexander Iza');
-      // Aquí necesitas tener una forma de identificar el registro a actualizar, por ejemplo, el ID del producto
-      // Supongamos que tienes un campo de entrada para el ID del producto en tu formulario
-      const productoId = document.getElementById('nombreProducto').value;
-      const productoRef = ref(database, `Alexander Iza/${productoId}`);
-      // Crea el objeto con los nuevos datos del producto
-      const productoActualizado = {
-            Descripción: descripcionProducto,
-            Precio: precioProducto,
-            Cantidad: cantidadProducto
-        };
+      window.actualizarDatosProducto = function () {
+      const nombreProducto = document.getElementById('nombreProducto').value;
+      const nuevaDescripcion = document.getElementById('descripcionProducto').value;
+      const nuevoPrecio = document.getElementById('precioProducto').value;
+      const nuevaCantidad = document.getElementById('cantidadProducto').value;
 
-        // Actualiza el registro en la base de datos
-        push(productoRef, productoActualizado)
-        .then(() => {
-            console.log('Registro actualizado con éxito');
-            // Aquí puedes agregar código para manejar la actualización exitosa, como mostrar un mensaje al usuario
-        })
-        .catch((error) => {
-            console.error('Error al actualizar el registro:', error);
-            // Aquí puedes agregar código para manejar errores, como mostrar un mensaje de error al usuario
-        });
-    }
+      // Referencia a la base de datos de Firebase
+      const registrosRef = ref(database, 'Alexander Iza/');
+
+      // Buscar el ID del producto basado en el nombre
+      onValue(registrosRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          let productoID = null;
+          for (const key in data) {
+            if (data[key].Nombre === nombreProducto) {
+              productoID = key;
+              break;
+            }
+          }
+          if (productoID) {
+            // Actualizar los datos del producto en Firebase
+            const productoRef = ref(database, `Alexander Iza/${productoID}`);
+            update(productoRef, {
+              Nombre: nombreProducto,
+              Descripción: nuevaDescripcion,
+              Precio: nuevoPrecio,
+              Cantidad: nuevaCantidad
+            }).then(() => {
+              console.log('Datos actualizados con éxito');
+            }).catch((error) => {
+              console.error('Error al actualizar datos:', error);
+            });
+          } else {
+            console.log('Producto no encontrado para actualizar');
+          }
+        }
+      }, {
+        onlyOnce: true
+      });
+    };
+     
       
       
       
