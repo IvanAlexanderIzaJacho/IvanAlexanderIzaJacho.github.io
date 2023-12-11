@@ -235,21 +235,21 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const database= getDatabase(app);
-      window.crearRegistro = function () {
+      function crearRegistro() {
       const nombre = document.getElementById("nombreProducto").value;
-      const Descripción = document.getElementById("descripcionProducto").value;
-      const Precio = document.getElementById("precioProducto").value;
-      const Cantidad = document.getElementById("cantidadProducto").value;
+      const descripcion = document.getElementById("descripcionProducto").value;
+      const precio = document.getElementById("precioProducto").value;
+      const cantidad = document.getElementById("cantidadProducto").value;
+
+      const nuevoRegistroRef = firebase.database().ref('Alexander Iza').push();
+      nuevoRegistroRef.set({
+        Nombre: nombre,
+        Descripción: descripcion,
+        Precio: precio,
+        Cantidad: cantidad
+      });
+    }
       
-      push( 
-        ref(database, 'Alexander Iza'),
-        {
-          Nombre: nombre,
-          Descripción: Descripción,
-          Precio: Precio,
-          Cantidad: Cantidad 
-        });
-      }
 
       //Consultar Datos
       window.buscarProductoPorNombre = function () {
