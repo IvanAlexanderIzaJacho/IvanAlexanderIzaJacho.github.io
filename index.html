@@ -212,7 +212,7 @@
 
         <input type="button" value="Guardar Producto" class="boton boton-actualizar" onclick="crearRegistro()">      
         <input type="button" value="Actualizar" class="boton boton-actualizar" onclick="actualizarRegistro()">
-        <input type="button" value="Consultar" class="boton boton-consultar" onclick="consultarRegistros()">
+        <input type="button" value="Consultar" class="boton boton-consultar" onclick="consultarRegistrosPorNombre()">
         <input type="button" value="Eliminar" class="boton boton-eliminar" onclick="eliminarRegistro()">
     </form>
     <script type="module">
@@ -250,29 +250,33 @@
         });
       }
 
-        //Consultar Datos
-        window.consultarRegistros = function () 
-        {
-            const registrosRef = ref(database, 'Alexander Iza');
-
-            onValue(registrosRef, (snapshot) => 
-            {
-                const data = snapshot.val();
-                if (data)
-                 {
-                    const keys = Object.keys(data);
-                    const lastKey = keys[keys.length - 1];
-                    const producto = data[lastKey];
-                    document.getElementById('nombreProducto').value = producto.Nombre || '';
-                    document.getElementById('descripcionProducto').value = producto.Descripción || '';
-                    document.getElementById('precioProducto').value = producto.Precio || '';
-                    document.getElementById('cantidadProducto').value = producto.Cantidad || '';
-                  }
-            }, 
-            {
-             onlyOnce: true 
-            });
-    }
+      //Consultar Datos
+      window.consultarRegistrosPorNombre = function (nombreProductoBuscado) {
+      const registrosRef = ref(database, 'Alexander Iza');
+      onValue(registrosRef, (snapshot) => {
+        const data = snapshot.val();
+          if (data) {
+            let productoEncontrado = null;
+            for (const key in data) {
+              if (data[key].Nombre === nombreProductoBuscado) {
+                productoEncontrado = data[key];
+                break;
+              }
+            }
+            if (productoEncontrado) {
+              document.getElementById('nombreProducto').value = productoEncontrado.Nombre || '';
+              document.getElementById('descripcionProducto').value = productoEncontrado.Descripción || '';
+              document.getElementById('precioProducto').value = productoEncontrado.Precio || '';
+              document.getElementById('cantidadProducto').value = productoEncontrado.Cantidad || '';
+            } else {
+              console.log('Producto no encontrado');
+            }
+          }
+      }, {
+          onlyOnce: true
+      });
+  }
+          
 
             //Actualizar datos
             window.actualizarRegistro = function () {
