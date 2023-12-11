@@ -255,40 +255,28 @@
         }
 
         //Consultar Datos
-        window.consultarRegistros = function () {
-        // Obtén el valor ingresado por el usuario para la búsqueda
-        const nombreBuscado = document.getElementById('nombreProducto').value;
+        window.consultarRegistros = function () 
+        {
+            const registrosRef = ref(database, 'Alexander Iza');
 
-        // Referencia a la base de datos y al nodo específico
-        const registrosRef = ref(database, 'Alexander Iza');
-
-        // Crea una consulta con la condición de que el campo 'Nombre' sea igual al nombre buscado
-        const consulta = query(registrosRef, orderByChild('Nombre'), equalTo(nombreBuscado));
-
-        // Ejecuta la consulta
-        onValue(consulta, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                // Si hay datos, recorre los resultados y actualiza el formulario con el primer producto encontrado
-                for (let key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        const producto = data[key];
-                        
-                        document.getElementById('descripcionProducto').value = producto.Descripción || '';
-                        document.getElementById('precioProducto').value = producto.Precio || '';
-                        document.getElementById('cantidadProducto').value = producto.Cantidad || '';
-                        break; // Sal del bucle después de actualizar con el primer producto encontrado
-                    }
-                }
-            } else {
-                // Si no hay datos, puedes manejarlo como prefieras, por ejemplo, mostrando un mensaje
-                console.log('No se encontraron productos con ese nombre.');
-            }
-        }, {
-            onlyOnce: true
-        });
+            onValue(registrosRef, (snapshot) => 
+            {
+                const data = snapshot.val();
+                if (data)
+                 {
+                    const keys = Object.keys(data);
+                    const lastKey = keys[keys.length - 1];
+                    const producto = data[lastKey];
+                    document.getElementById('nombreProducto').value = producto.Nombre || '';
+                    document.getElementById('descripcionProducto').value = producto.Descripción || '';
+                    document.getElementById('precioProducto').value = producto.Precio || '';
+                    document.getElementById('cantidadProducto').value = producto.Cantidad || '';
+                  }
+            }, 
+            {
+             onlyOnce: true 
+            });
     }
-        
     </script>
 </div>
 
