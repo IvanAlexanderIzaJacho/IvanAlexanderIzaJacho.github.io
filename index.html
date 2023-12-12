@@ -300,7 +300,7 @@
       const nuevaCantidad = document.getElementById('cantidadProducto').value;
 
       // Referencia a la base de datos de Firebase
-      const registrosRef = ref(database, 'Alexander_Iza/');
+      const registrosRef = ref(database, 'Alexander Iza/');
 
       // Buscar el ID del producto basado en el nombre
       onValue(registrosRef, (snapshot) => {
@@ -315,7 +315,7 @@
           }
           if (productoID) {
             // Actualizar los datos del producto en Firebase
-            const productoRef = ref(database, `Alexander_Iza/${productoID}`);
+            const productoRef = ref(database, `Alexander Iza/${productoID}`);
             update(productoRef, {
               Nombre: nombreProducto,
               Descripción: nuevaDescripcion,
