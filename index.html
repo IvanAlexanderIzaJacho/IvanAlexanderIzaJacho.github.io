@@ -249,24 +249,22 @@
           Cantidad: Cantidad 
         }).then(() => {
         // Mensaje de éxito y limpieza de los campos
-        window.alert('Producto registrado con éxito', 'exito');
+        alert('Producto registrado con éxito', 'exito');
         document.getElementById("nombreProducto").value = '';
         document.getElementById("descripcionProducto").value = '';
         document.getElementById("precioProducto").value = '';
         document.getElementById("cantidadProducto").value = '';
       }).catch((error) => {
         // Mensaje de error
-        window.alert('Error al registrar el producto: ' + error.message, 'error');
+        alert('Error al registrar el producto: ' + error.message, 'error');
       });
+    };     
+    //Consultar Datos
+    window.buscarProductoPorNombre = function () {
+    const nombreProductoBuscado = document.getElementById('nombreProducto').value;
+    consultarRegistrosPorNombre(nombreProductoBuscado);
     };
-      
-
-      //Consultar Datos
-      window.buscarProductoPorNombre = function () {
-      const nombreProductoBuscado = document.getElementById('nombreProducto').value;
-      consultarRegistrosPorNombre(nombreProductoBuscado);
-      };
-      window.consultarRegistrosPorNombre = function (nombreProductoBuscado) {
+    window.consultarRegistrosPorNombre = function (nombreProductoBuscado) {
       const registrosRef = ref(database, 'Alexander Iza/');
       onValue(registrosRef, (snapshot) => {
         const data = snapshot.val();
@@ -283,10 +281,10 @@
             document.getElementById('descripcionProducto').value = productoEncontrado.Descripción || '';
             document.getElementById('precioProducto').value = productoEncontrado.Precio || '';
             document.getElementById('cantidadProducto').value = productoEncontrado.Cantidad || '';
-            window.alert('Producto encontrado: ' + productoEncontrado.Nombre);
+            alert('Producto encontrado: ' + productoEncontrado.Nombre);
           } else {
             // Manejar el caso en que el producto no se encuentra
-            window.alert('Producto no encontrado');
+            alert('Producto no encontrado');
           }
         }
       }, {
@@ -329,10 +327,10 @@
               document.getElementById("precioProducto").value = '';
               document.getElementById("cantidadProducto").value = '';
             }).catch((error) => {
-              window.alert('Error al actualizar datos:', error);
+              alert('Error al actualizar datos:', error);
             });
           } else {
-            window.alert('Producto no encontrado para actualizar');
+            alert('Producto no encontrado para actualizar');
           }
         }
       }, {
