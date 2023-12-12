@@ -341,7 +341,7 @@
   //eliminar Registro
   window.eliminarProductoPorNombre = function (nombreProducto) {
   const db = getDatabase();
-  const registrosRef = ref(db, 'Alexander_Iza/');
+  const registrosRef = ref(db, 'Alexander Iza/');
   onValue(registrosRef, (snapshot) => {
     const data = snapshot.val();
     let productoKey = null;
