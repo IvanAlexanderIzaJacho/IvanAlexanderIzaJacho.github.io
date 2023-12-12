@@ -266,7 +266,7 @@
     consultarRegistrosPorNombre(nombreProductoBuscado);
     };
     window.consultarRegistrosPorNombre = function (nombreProductoBuscado) {
-      const registrosRef = ref(database, 'Alexander Iza/');
+      const registrosRef = ref(database, 'Alexander_Iza/');
       onValue(registrosRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
@@ -300,7 +300,7 @@
       const nuevaCantidad = document.getElementById('cantidadProducto').value;
 
       // Referencia a la base de datos de Firebase
-      const registrosRef = ref(database, 'Alexander Iza/');
+      const registrosRef = ref(database, 'Alexander_Iza/');
 
       // Buscar el ID del producto basado en el nombre
       onValue(registrosRef, (snapshot) => {
@@ -315,7 +315,7 @@
           }
           if (productoID) {
             // Actualizar los datos del producto en Firebase
-            const productoRef = ref(database, `Alexander Iza/${productoID}`);
+            const productoRef = ref(database, `Alexander_Iza/${productoID}`);
             update(productoRef, {
               Nombre: nombreProducto,
               Descripción: nuevaDescripcion,
@@ -341,7 +341,7 @@
   //eliminar Registro
   window.eliminarProductoPorNombre = function (nombreProducto) {
   const db = getDatabase();
-  const registrosRef = ref(db, 'Alexander Iza/');
+  const registrosRef = ref(db, 'Alexander_Iza/');
   onValue(registrosRef, (snapshot) => {
     const data = snapshot.val();
     let productoKey = null;
@@ -354,7 +354,7 @@
     }
 
     if (productoKey) {
-      const productoRef = ref(db, `Alexander Iza/${productoKey}`);
+      const productoRef = ref(db, `Alexander_Iza/${productoKey}`);
       remove(productoRef)
         .then(() => {
           alert('Producto eliminado con éxito');
