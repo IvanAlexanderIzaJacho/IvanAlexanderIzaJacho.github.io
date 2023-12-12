@@ -359,6 +359,10 @@
       remove(productoRef)
         .then(() => {
           window.alert('Producto eliminado con éxito');
+          document.getElementById("nombreProducto").value = '';
+          document.getElementById("descripcionProducto").value = '';
+          document.getElementById("precioProducto").value = '';
+          document.getElementById("cantidadProducto").value = '';
         })
         .catch((error) => {
           window.alert('Error al eliminar el producto:', error);
