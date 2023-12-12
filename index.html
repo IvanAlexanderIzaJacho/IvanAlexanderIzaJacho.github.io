@@ -234,6 +234,7 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const database= getDatabase(app);
+      //CREAR REGISTRO
       window.crearRegistro = function () {
       const nombre = document.getElementById("nombreProducto").value;
       const Descripción = document.getElementById("descripcionProducto").value;
@@ -356,14 +357,14 @@
       const productoRef = ref(db, `Alexander Iza/${productoKey}`);
       remove(productoRef)
         .then(() => {
-          window.alert('Producto eliminado con éxito');
+          alert('Producto eliminado con éxito');
           document.getElementById("nombreProducto").value = '';
           document.getElementById("descripcionProducto").value = '';
           document.getElementById("precioProducto").value = '';
           document.getElementById("cantidadProducto").value = '';
         })
         .catch((error) => {
-          window.alert('Error al eliminar el producto:', error);
+          alert('Error al eliminar el producto:', error);
         });
     } else {
       console.log('Producto no encontrado para eliminar');
